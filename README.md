@@ -55,3 +55,40 @@ backend web_servers
 
 ![Задание 3*](img/py_7.png)
 
+### Задание 4*:
+
+## Проверяем сайт example1.local:
+
+![Задание 4*](img/py_10.png)
+
+## Проверяем сайт example2.local:
+
+![Задание 4*](img/py_11.png)
+
+## haproxy.cfg
+
+```haproxy
+frontend multi_domain_frontend
+    bind *:8090
+    mode http
+
+    # Создаем правила (ACL): проверяем, какой домен запросил клиент
+    acl is_example1 hdr(host) -i example1.local
+    acl is_example2 hdr(host) -i example2.local
+
+    # Направляем трафик в нужный бэкенд в зависимости от сработавшего правила
+    use_backend backend_example1 if is_example1
+    use_backend backend_example2 if is_example2
+
+backend backend_example1
+    mode http
+    balance roundrobin
+    server ex1_s1 127.0.0.1:8001 check
+    server ex1_s2 127.0.0.1:8002 check
+
+backend backend_example2
+    mode http
+    balance roundrobin
+    server ex2_s1 127.0.0.1:8003 check
+    server ex2_s2 127.0.0.1:8004 check
+```
