@@ -39,4 +39,19 @@ backend web_servers
     server s1 127.0.0.1:8888 weight 2 check
     server s2 127.0.0.1:9999 weight 3 check
     server s3 127.0.0.1:7777 weight 4 check
-    ```
+```
+
+### Задание 3*:
+
+![Задание 3*](img/py_8.png)
+
+![Задание 3*](img/py_9.png)
+
+![Задание 3*](img/py_4.png)
+
+![Задание 3*](img/py_5.png)
+
+![Задание 3*](img/py_6.png)
+
+![Задание 3*](img/py_7.png)
+
